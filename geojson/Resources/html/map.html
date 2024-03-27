@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <title>map</title>
+        <style type="text/css">
+            html { height: 100% }
+            body { height: 100%; margin: 0; padding: 0;  -webkit-print-color-adjust: exact; }
+            #map-canvas { height: 100% }
+            .property {
+              position: relative;
+              text-align: center;
+              font-size: 14px;
+              padding: 5px;
+              margin: 0;
+              background-color: rgba(127,127,127,0.2);!important;
+              height: 55px;
+            }
+            a {
+                color: #34568B;
+                display: block;
+                height: 100%;
+                width: 100%;
+            }
+            a:link {
+                font-size: 21px;
+                text-decoration: none;
+                font-weight: bold;
+            }
+        </style>
+        <script id="google">
+            
+            let geocoder;
+            let map;
+            
+            function loadMap(api){
+                (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+                  key: api.key,
+                  v: api.v,
+                  language: api.language,
+                  mapIds: api.mapIds
+                });
+                (async function(api){
+                    const { Map } = await google.maps.importLibrary("maps");
+                    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+                    geocoder = new google.maps.Geocoder();
+                    map = new Map(document.getElementById("map-canvas"), {
+                        zoom: api.zoom,
+                        center: new google.maps.LatLng(api.lat, api.lng),
+                        disableDefaultUI:api.disableDefaultUI,
+                        mapTypeId: google.maps.MapTypeId.mapTypeId,
+                        mapId: api.mapIds[0]
+                    });
+                    map.addListener('maptypeid_changed', function(){
+                        $4d.maptypeid_changed(map.mapTypeId);
+                    });
+                    $4d.maptypeid_changed(map.mapTypeId);
+                })(api);
+            };
+        </script>
+        <script>
+            function addGeoJson(geoJson) {
+                
+                const point = geoJson.data.geometry.properties.point;
+                map.panTo(new google.maps.LatLng(point.lat, point.lng));
+
+                map.data.forEach(function(feature) {
+                    map.data.remove(feature);
+                });
+                
+                map.data.addGeoJson(geoJson.data);
+                
+                map.data.setStyle({
+                  strokeWeight: 3,
+                  strokeColor: "#888888",
+                  strokeOpacity: 0.1,
+                  fillColor: "#880000",
+                  fillOpacity: 0.1,
+                });
+                
+            }
+            function setMapType(type) {
+                
+                switch(type)
+                {
+                    case 'HYBRID':
+                    map.setMapTypeId(google.maps.MapTypeId.HYBRID);
+                    break;
+                    
+                    case 'ROADMAP':
+                    map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+                    break;
+                    
+                    case 'SATELLITE':
+                    map.setMapTypeId(google.maps.MapTypeId.SATELLITE);
+                    break;
+                    
+                    case 'TERRAIN':
+                    map.setMapTypeId(google.maps.MapTypeId.TERRAIN);
+                    break;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id="map-canvas" />
+    </body>
+</html>
