@@ -2,3 +2,4 @@ geojson/Project/Data/*
 geojson/userPreferences.*
 geojson/Project/DerivedData/*
 geojson/Resources/constants.xlf
+/geojson/Data
