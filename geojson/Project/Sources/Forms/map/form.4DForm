@@ -18,112 +18,7 @@
 	"destination": "detailScreen",
 	"pages": [
 		{
-			"objects": {}
-		},
-		{
 			"objects": {
-				"area": {
-					"type": "listbox",
-					"left": 20,
-					"top": 40,
-					"width": 422,
-					"height": 446,
-					"events": [
-						"onDoubleClick",
-						"onSelectionChange"
-					],
-					"resizingMode": "legacy",
-					"listboxType": "collection",
-					"dataSource": "Form:C1466.GeoJSON.col",
-					"sizingY": "grow",
-					"alternateFill": "automaticAlternate",
-					"horizontalLineStroke": "transparent",
-					"verticalLineStroke": "transparent",
-					"currentItemSource": "Form:C1466.GeoJSON.item",
-					"currentItemPositionSource": "Form:C1466.GeoJSON.pos",
-					"selectedItemsSource": "Form:C1466.GeoJSON.sel",
-					"method": "ObjectMethods/area.4dm",
-					"columns": [
-						{
-							"header": {
-								"text": "地区",
-								"name": "Header1"
-							},
-							"name": "Column1",
-							"footer": {
-								"name": "Footer1"
-							},
-							"resizable": false,
-							"enterable": false,
-							"dataSource": "This:C1470.data.geometry.properties.text",
-							"truncateMode": "none",
-							"width": 180
-						},
-						{
-							"header": {
-								"name": "Header2",
-								"text": "識別子"
-							},
-							"name": "Column2",
-							"dataSource": "This:C1470.data.geometry.properties.code",
-							"resizable": false,
-							"enterable": false,
-							"footer": {
-								"name": "Footer2"
-							},
-							"truncateMode": "none",
-							"width": 110
-						},
-						{
-							"header": {
-								"name": "Header3",
-								"text": "人口"
-							},
-							"name": "Column3",
-							"width": 40,
-							"dataSource": "This:C1470.data.geometry.properties.population",
-							"enterable": false,
-							"resizable": false,
-							"truncateMode": "none",
-							"footer": {
-								"name": "Footer3"
-							}
-						},
-						{
-							"header": {
-								"name": "Header4",
-								"text": "世帯数"
-							},
-							"name": "Column4",
-							"dataSource": "This:C1470.data.geometry.properties.household",
-							"truncateMode": "none",
-							"resizable": false,
-							"enterable": false,
-							"footer": {
-								"name": "Footer4"
-							},
-							"width": 0
-						}
-					]
-				},
-				"map": {
-					"type": "webArea",
-					"left": 460,
-					"top": 40,
-					"width": 537,
-					"height": 451,
-					"contextMenu": "none",
-					"borderStyle": "none",
-					"sizingX": "grow",
-					"sizingY": "grow",
-					"method": "ObjectMethods/map.4dm",
-					"events": [
-						"onLoad",
-						"onEndURLLoading"
-					],
-					"webEngine": "embedded",
-					"methodsAccessibility": "all"
-				},
 				"MapType.HYBRID": {
 					"type": "button",
 					"text": "HYBRID",
@@ -179,11 +74,146 @@
 					"imageHugsTitle": false,
 					"focusable": false,
 					"method": "ObjectMethods/MapType.TERRAIN.4dm"
+				},
+				"map": {
+					"type": "webArea",
+					"left": 460,
+					"top": 40,
+					"width": 537,
+					"height": 451,
+					"contextMenu": "none",
+					"borderStyle": "none",
+					"sizingX": "grow",
+					"sizingY": "grow",
+					"method": "ObjectMethods/map.4dm",
+					"events": [
+						"onLoad",
+						"onEndURLLoading"
+					],
+					"webEngine": "embedded",
+					"methodsAccessibility": "all"
+				}
+			}
+		},
+		{
+			"objects": {
+				"GeoJSON": {
+					"type": "listbox",
+					"left": 20,
+					"top": 40,
+					"width": 422,
+					"height": 446,
+					"events": [
+						"onSelectionChange"
+					],
+					"resizingMode": "legacy",
+					"listboxType": "collection",
+					"dataSource": "Form:C1466.GeoJSON.col",
+					"sizingY": "grow",
+					"alternateFill": "automaticAlternate",
+					"horizontalLineStroke": "transparent",
+					"verticalLineStroke": "transparent",
+					"currentItemSource": "Form:C1466.GeoJSON.item",
+					"currentItemPositionSource": "Form:C1466.GeoJSON.pos",
+					"selectedItemsSource": "Form:C1466.GeoJSON.sel",
+					"method": "ObjectMethods/GeoJSON.4dm",
+					"columns": [
+						{
+							"header": {
+								"text": "地区",
+								"name": "Header1"
+							},
+							"name": "Column1",
+							"footer": {
+								"name": "Footer1"
+							},
+							"resizable": false,
+							"enterable": false,
+							"dataSource": "This:C1470.data.properties.name",
+							"truncateMode": "none",
+							"width": 180
+						},
+						{
+							"header": {
+								"name": "Header2",
+								"text": "識別子"
+							},
+							"name": "Column2",
+							"dataSource": "This:C1470.data.properties.code",
+							"resizable": false,
+							"enterable": false,
+							"footer": {
+								"name": "Footer2"
+							},
+							"truncateMode": "none",
+							"width": 110
+						},
+						{
+							"header": {
+								"name": "Header3",
+								"text": "人口"
+							},
+							"name": "Column3",
+							"width": 40,
+							"dataSource": "This:C1470.data.properties.population",
+							"enterable": false,
+							"resizable": false,
+							"truncateMode": "none",
+							"footer": {
+								"name": "Footer3"
+							}
+						},
+						{
+							"header": {
+								"name": "Header4",
+								"text": "世帯数"
+							},
+							"name": "Column4",
+							"dataSource": "This:C1470.data.properties.household",
+							"truncateMode": "none",
+							"resizable": false,
+							"enterable": false,
+							"footer": {
+								"name": "Footer4"
+							},
+							"width": 0
+						}
+					]
+				},
+				"基本単位区": {
+					"type": "radio",
+					"text": "基本単位区",
+					"top": 10,
+					"left": 660,
+					"width": 87,
+					"height": 18,
+					"events": [
+						"onClick"
+					],
+					"dataSourceTypeHint": "boolean",
+					"focusable": false,
+					"method": "ObjectMethods/基本単位区.4dm",
+					"radioGroup": "r"
+				},
+				"市区町村": {
+					"type": "radio",
+					"text": "市区町村",
+					"top": 10,
+					"left": 760,
+					"width": 87,
+					"height": 18,
+					"events": [
+						"onClick"
+					],
+					"dataSourceTypeHint": "boolean",
+					"focusable": false,
+					"method": "ObjectMethods/市区町村.4dm",
+					"radioGroup": "r"
 				}
 			}
 		}
 	],
-	"geometryStamp": 87,
+	"geometryStamp": 128,
 	"method": "method.4dm",
 	"editor": {
 		"activeView": "View 1",

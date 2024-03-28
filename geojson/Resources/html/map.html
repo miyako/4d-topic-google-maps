@@ -55,14 +55,22 @@
                     map.addListener('maptypeid_changed', function(){
                         $4d.maptypeid_changed(map.mapTypeId);
                     });
+                    map.addListener('center_changed', function(){
+                        $4d.center_changed(map.center.lat(),map.center.lng());
+                    });
+                    map.addListener('zoom_changed', function(){
+                        $4d.zoom_changed(map.getZoom());
+                    });
                     $4d.maptypeid_changed(map.mapTypeId);
+                    $4d.center_changed(map.center.lat(),map.center.lng());
+                    $4d.zoom_changed(map.getZoom());
                 })(api);
             };
         </script>
         <script>
             function addGeoJson(geoJson) {
                 
-                const point = geoJson.data.geometry.properties.point;
+                const point = geoJson.data.properties.point;
                 map.panTo(new google.maps.LatLng(point.lat, point.lng));
 
                 map.data.forEach(function(feature) {
@@ -79,6 +87,10 @@
                   fillOpacity: 0.1,
                 });
                 
+            }
+            function setZoom(zoom) {
+                
+                map.setZoom(zoom);
             }
             function setMapType(type) {
                 

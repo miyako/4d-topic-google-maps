@@ -77,13 +77,13 @@ Class constructor($file : 4D:C1709.File)
 			
 			$GeoJSON.geometry.coordinates:=[[$coordinates]]
 			
-			$GeoJSON.geometry.properties:={}
-			$GeoJSON.geometry.properties.parts:=[$member.PREF_NAME; $member.CITY_NAME; $member.S_NAME]
-			$GeoJSON.geometry.properties.text:=$GeoJSON.geometry.properties.parts.join("")
-			$GeoJSON.geometry.properties.code:=$member.KEYCODE1
-			$GeoJSON.geometry.properties.point:={lat: Num:C11($member.Y_CODE); lng: Num:C11($member.X_CODE)}
-			$GeoJSON.geometry.properties.population:=Num:C11($member.JINKO)
-			$GeoJSON.geometry.properties.household:=Num:C11($member.SETAI)
+			$GeoJSON.properties:={}
+			$GeoJSON.properties.parts:=[$member.PREF_NAME; $member.CITY_NAME; $member.S_NAME]
+			$GeoJSON.properties.name:=$GeoJSON.properties.parts.join("")
+			$GeoJSON.properties.code:=$member.KEYCODE1
+			$GeoJSON.properties.point:={lat: Num:C11($member.Y_CODE); lng: Num:C11($member.X_CODE)}
+			$GeoJSON.properties.population:=Num:C11($member.JINKO)
+			$GeoJSON.properties.household:=Num:C11($member.SETAI)
 			
 			This:C1470.GeoJSON.push($GeoJSON)
 			

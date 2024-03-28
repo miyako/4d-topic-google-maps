@@ -5,6 +5,7 @@
 	<table name="GeoJSON" uuid="AA6DF85CAF964212952F8C01C5A2A318" id="1">
 		<field name="Id" uuid="FC57C9051A1243C9B3A9CBD44F8B7EA0" type="4" unique="true" autosequence="true" not_null="true" id="1"/>
 		<field name="data" uuid="A55E00AFCBA849DCA3C297DC65324DA5" type="21" blob_switch_size="2147483647" id="2"/>
+		<field name="type" uuid="6D0E658F409E414D910FE3991FD6C4B5" type="10" limiting_length="10" id="3"/>
 		<primary_key field_name="Id" field_uuid="FC57C9051A1243C9B3A9CBD44F8B7EA0"/>
 		<table_extra>
 			<editor_table_info displayable_fields_count="6">
